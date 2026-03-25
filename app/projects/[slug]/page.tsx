@@ -2,16 +2,16 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { projects, Project } from '@/lib/projects'
+import { projects } from '@/lib/projects'
 import Button from '@/components/ui/Button'
-import { FiArrowLeft, FiGithub, FiExternalLink } from 'react-icons/fi'
+import { FiArrowLeft, FiGithub, FiExternalLink, FiCheckCircle } from 'react-icons/fi'
 
 interface ProjectPageProps {
-  params: Promise<{ slug: string }>   // ← params is a Promise
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { slug } = await params   // ← await params
+  const { slug } = await params
   const project = projects.find((p) => p.slug === slug)
   if (!project) return { title: 'Project Not Found' }
   return {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params   // ← await params
+  const { slug } = await params
   const project = projects.find((p) => p.slug === slug)
   if (!project) notFound()
 
@@ -66,21 +66,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             <div className="prose dark:prose-invert max-w-none mb-8">
               <h2>Overview</h2>
-              <p>
-                This is a detailed description of the project. You can explain the problem it solves,
-                the approach you took, challenges faced, and the final outcome. Use this space to
-                showcase your work in depth.
-              </p>
+              <p>{project.overview}</p>
+
               <h2>Key Features</h2>
               <ul>
-                <li>Feature one with explanation</li>
-                <li>Feature two with explanation</li>
-                <li>Feature three with explanation</li>
+                {project.features.map((feature, idx) => (
+                  <li key={idx}>{feature}</li>
+                ))}
               </ul>
-              <h2>Technical Stack</h2>
-              <p>
-                Explain why you chose specific technologies and how they contributed to the project.
-              </p>
+
+              {project.challenges && (
+                <>
+                  <h2>Challenges & Solutions</h2>
+                  <p>{project.challenges}</p>
+                </>
+              )}
+
+              {project.outcome && (
+                <>
+                  <h2>Outcome</h2>
+                  <p>{project.outcome}</p>
+                </>
+              )}
             </div>
 
             <div className="flex gap-4">

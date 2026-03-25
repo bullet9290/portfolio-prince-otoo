@@ -1,15 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { FiGithub, FiLinkedin, FiTwitter, FiMail } from 'react-icons/fi'
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FaWhatsapp } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   const socials = [
-    { icon: FiGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
-    { icon: FiLinkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
-    { icon: FiTwitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
+    { icon: FiGithub, href: 'https://github.com/bullet9290', label: 'GitHub' },
+    { icon: FiLinkedin, href: 'https://www.linkedin.com/in/prince-essel-ba4a48326/', label: 'LinkedIn' },
+    { icon: FaWhatsapp, href: 'https://wa.me/233244821278', label: 'WhatsApp' },
     { icon: FiMail, href: 'mailto:kingsfordessel242@gmail.com', label: 'Email' },
   ]
 

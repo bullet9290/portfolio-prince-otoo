@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import SectionHeading from '@/components/ui/SectionHeading'
+import SkillCard from '@/components/ui/SkillCard'
+import { skills } from '@/lib/skills'
 
 export const metadata: Metadata = {
   title: 'About Me | Prince Essel',
@@ -17,6 +19,7 @@ export default function AboutPage() {
         />
         
         <div className="grid md:grid-cols-3 gap-12">
+          {/* Profile column (unchanged) */}
           <div className="md:col-span-1">
             <div className="sticky top-24">
               <div className="relative h-80 w-full rounded-2xl overflow-hidden mb-6">
@@ -38,6 +41,7 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* Main content */}
           <div className="md:col-span-2 space-y-8">
             <section>
               <h4 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Professional Summary</h4>
@@ -56,26 +60,18 @@ export default function AboutPage() {
               </div>
             </section>
 
+            {/* Technical Skills - full grid */}
             <section>
-              <h4 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Technical Skills</h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                  'React',
-                  'Next.js',
-                  'Node.js',
-                  'NestJS',
-                  'PHP',
-                  'MongoDB',
-                  'MySQL / MariaDB',
-                  'REST API Development',
-                  'Tailwind CSS',
-                  'Git & GitHub',
-                  'Figma',
-                  'UI/UX Design',
-                ].map((skill) => (
-                  <div key={skill} className="bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg text-center text-sm">
-                    {skill}
-                  </div>
+              <h4 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Technical Skills</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                {skills.map((skill, index) => (
+                  <SkillCard
+                    key={skill.name}
+                    name={skill.name}
+                    iconName={skill.iconName}
+                    color={skill.color}
+                    delay={index * 0.05}
+                  />
                 ))}
               </div>
             </section>

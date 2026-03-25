@@ -3,14 +3,11 @@
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import SectionHeading from '@/components/ui/SectionHeading'
+import SkillCard from '@/components/ui/SkillCard'
+import { skills } from '@/lib/skills'
 
 export default function AboutPreview() {
-  const stats = [
-    { value: '3+', label: 'Years Experience' },
-    { value: '4+', label: 'Major Projects' },
-    { value: '8+', label: 'Technologies' },
-    { value: '2', label: 'Open Source' },
-  ]
+  const previewSkills = skills.slice(0, 4) // Show first 4 skills
 
   return (
     <section className="section-container bg-gradient-to-b from-transparent to-primary/5 dark:to-primary/10">
@@ -18,7 +15,7 @@ export default function AboutPreview() {
         title="About Me"
         subtitle="Get to know me better"
       />
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -37,6 +34,7 @@ export default function AboutPreview() {
             More About Me
           </Button>
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -44,20 +42,45 @@ export default function AboutPreview() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-2 gap-6"
         >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="text-4xl font-bold gradient-text mb-2">{stat.value}</div>
-              <div className="text-gray-600 dark:text-gray-400">{stat.label}</div>
-            </motion.div>
-          ))}
+          {/* Stats cards */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="text-4xl font-bold gradient-text mb-2">3+</div>
+            <div className="text-gray-600 dark:text-gray-400">Years Experience</div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="text-4xl font-bold gradient-text mb-2">4+</div>
+            <div className="text-gray-600 dark:text-gray-400">Major Projects</div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="text-4xl font-bold gradient-text mb-2">8+</div>
+            <div className="text-gray-600 dark:text-gray-400">Technologies</div>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="text-4xl font-bold gradient-text mb-2">2</div>
+            <div className="text-gray-600 dark:text-gray-400">Open Source</div>
+          </div>
         </motion.div>
+      </div>
+
+      {/* Skills Preview */}
+      <div className="mt-16">
+        <h3 className="text-2xl font-bold text-center mb-8 gradient-text">Tech Stack I Use</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          {previewSkills.map((skill, idx) => (
+            <SkillCard
+              key={skill.name}
+              name={skill.name}
+              iconName={skill.iconName}
+              color={skill.color}
+              delay={idx * 0.05}
+            />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Button href="/about" variant="outline" className="rounded-full">
+            View All Skills →
+          </Button>
+        </div>
       </div>
     </section>
   )
