@@ -38,7 +38,7 @@ export const projects: Project[] = [
     description: 'Full-featured Point of Sale with real-time inventory tracking, barcode scanning, role-based authentication, and sales analytics dashboard.',
     image: '/images/projects/pos.jpg',
     technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS'],
-    liveUrl: 'http://bulletventorypos.42web.io/',
+    liveUrl: 'https://bulletinventorypos.infinityfree.me/',
     overview: `A complete retail management solution that combines point-of-sale operations with inventory control. It supports barcode scanning, receipt generation, and detailed sales reporting. The system is used by small to medium retail businesses to manage stock and sales efficiently.`,
     features: [
       'Secure user authentication with roles (Admin, Manager, Cashier)',
